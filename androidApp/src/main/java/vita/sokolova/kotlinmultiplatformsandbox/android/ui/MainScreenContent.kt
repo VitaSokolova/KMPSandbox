@@ -16,13 +16,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import vita.sokolova.kotlinmultiplatformsandbox.android.R
-import vita.sokolova.kotlinmultiplatformsandbox.android.domain.models.Movie
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.entities.MovieListScreenState
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.theme.SearchWithPaginationTaskTheme
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.views.Loader
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.views.MoviesLazyColumn
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.views.NOTHING_TO_SHOW_TEST_TAG
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.views.SearchField
+import vita.sokolova.kotlinmultiplatformsandbox.domain.entities.Movie
 
 @Composable
 fun MainScreenContent(

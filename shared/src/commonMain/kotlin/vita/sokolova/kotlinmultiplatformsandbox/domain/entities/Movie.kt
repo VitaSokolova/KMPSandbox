@@ -1,4 +1,4 @@
-package vita.sokolova.kotlinmultiplatformsandbox.android.domain.models
+package vita.sokolova.kotlinmultiplatformsandbox.domain.entities
 
 class Movie(
     val uniqueId: String,

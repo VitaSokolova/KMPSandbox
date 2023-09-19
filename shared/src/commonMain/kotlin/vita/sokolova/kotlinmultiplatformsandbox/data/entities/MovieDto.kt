@@ -1,4 +1,4 @@
-package vita.sokolova.kotlinmultiplatformsandbox.android.data.entities
+package vita.sokolova.kotlinmultiplatformsandbox.data.entities
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

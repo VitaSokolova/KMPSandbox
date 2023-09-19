@@ -9,8 +9,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import vita.sokolova.kotlinmultiplatformsandbox.android.ui.MainScreenContent
-import vita.sokolova.kotlinmultiplatformsandbox.android.ui.MainViewModel
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.entities.MovieListScreenState
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.theme.SearchWithPaginationTaskTheme
 import dagger.hilt.android.AndroidEntryPoint

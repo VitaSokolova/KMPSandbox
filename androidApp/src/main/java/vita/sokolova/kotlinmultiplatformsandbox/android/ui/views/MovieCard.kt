@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.flowlayout.FlowRow
 import com.skydoves.landscapist.glide.GlideImage
 import vita.sokolova.kotlinmultiplatformsandbox.android.R
-import vita.sokolova.kotlinmultiplatformsandbox.android.domain.models.Movie
+import vita.sokolova.kotlinmultiplatformsandbox.domain.entities.Movie
 import vita.sokolova.kotlinmultiplatformsandbox.android.ui.theme.SearchWithPaginationTaskTheme
 
 const val MOVIE_CARD_TEST_TAG = "MOVIE_CARD_TEST_TAG"

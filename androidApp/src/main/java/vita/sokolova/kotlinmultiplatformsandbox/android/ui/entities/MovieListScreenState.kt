@@ -1,6 +1,6 @@
 package vita.sokolova.kotlinmultiplatformsandbox.android.ui.entities
 
-import vita.sokolova.kotlinmultiplatformsandbox.android.domain.models.Movie
+import vita.sokolova.kotlinmultiplatformsandbox.domain.entities.Movie
 
 sealed interface MovieListScreenState {
     object EmptyQuery : MovieListScreenState

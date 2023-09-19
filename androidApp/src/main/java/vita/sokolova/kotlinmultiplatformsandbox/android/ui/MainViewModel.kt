@@ -2,14 +2,19 @@ package vita.sokolova.kotlinmultiplatformsandbox.android.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import vita.sokolova.kotlinmultiplatformsandbox.android.domain.repositories.MoviesRepository
-import vita.sokolova.kotlinmultiplatformsandbox.android.ui.entities.MovieListScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import vita.sokolova.kotlinmultiplatformsandbox.android.ui.entities.MovieListScreenState
+import vita.sokolova.kotlinmultiplatformsandbox.domain.repositories.MoviesRepository
 import javax.inject.Inject
 
 @HiltViewModel

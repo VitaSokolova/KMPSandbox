@@ -1,7 +1,10 @@
 package vita.sokolova.kotlinmultiplatformsandbox.android.ui.views
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
@@ -12,7 +15,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import vita.sokolova.kotlinmultiplatformsandbox.android.R
-import vita.sokolova.kotlinmultiplatformsandbox.android.domain.models.Movie
+import vita.sokolova.kotlinmultiplatformsandbox.domain.entities.Movie
 
 const val MOVIES_LIST_TEST_TAG = "MOVIES_LIST_TEST_TAG"
 const val NOTHING_TO_SHOW_TEST_TAG = "NOTHING_TO_SHOW_TEST_TAG"
@@ -23,7 +26,7 @@ fun MoviesLazyColumn(lazyItems: List<Movie>) {
         modifier = Modifier.testTag(MOVIES_LIST_TEST_TAG)
     ) {
         if (lazyItems.isEmpty()) {
-            item { showEmptyResultsText(R.string.nothing_found_text) }
+            item { EmptyResultsText(R.string.nothing_found_text) }
         } else {
             items(lazyItems) { item ->
                 val modifier = Modifier
@@ -40,7 +43,7 @@ fun MoviesLazyColumn(lazyItems: List<Movie>) {
 }
 
 @Composable
-private fun showEmptyResultsText(@StringRes textRes: Int) {
+private fun EmptyResultsText(@StringRes textRes: Int) {
     Text(
         modifier = Modifier
             .padding(top = 8.dp)
