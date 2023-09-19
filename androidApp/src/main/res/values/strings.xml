@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SearchWithPaginationTask</string>
+    <string name="search_screen_title">Search</string>
+    <string name="price_text">%.0f€</string>
+    <string name="error_text">Something went wrong</string>
+    <string name="try_again_btn">Try again</string>
+    <string name="nothing_found_text">Nothing found</string>
+    <string name="start_typing_text">Start typing to search for a movie</string>
+</resources>

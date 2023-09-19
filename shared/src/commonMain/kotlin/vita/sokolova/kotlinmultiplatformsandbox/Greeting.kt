@@ -12,6 +12,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
 import kotlinx.datetime.todayIn
 import kotlinx.serialization.json.Json
+import kotlin.random.Random
 
 class Greeting {
     private val platform: Platform = getPlatform()
@@ -27,13 +28,14 @@ class Greeting {
     }
 
     @Throws(Exception::class)
-    suspend fun greet(): String {
+    suspend fun greet(): List<String> = buildList {
         val rockets: List<RocketLaunch> =
             httpClient.get("https://api.spacexdata.com/v4/launches").body()
         val lastSuccessLaunch = rockets.last { it.launchSuccess == true }
-        return "Guess what it is! > ${platform.name.reversed()}!" +
-                "\nThere are only ${daysUntilNewYear()} left until New Year! 🎆" +
-                "\nThe last successful launch was ${lastSuccessLaunch.launchDateUTC} 🚀"
+        add(if (Random.nextBoolean()) "Hi!" else "Hello!")
+        add("Guess what it is! > ${platform.name.reversed()}!")
+        add("\nThere are only ${daysUntilNewYear()} days left until New Year! 🎆")
+        add("\nThe last successful launch was ${lastSuccessLaunch.launchDateUTC} 🚀")
     }
 
 //    fun greet(): String {
