@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 class MoviesResponseDto(
     @SerialName("Search")
-    val results: List<MovieDto>
+    val results: List<MovieDto>? = null
 )

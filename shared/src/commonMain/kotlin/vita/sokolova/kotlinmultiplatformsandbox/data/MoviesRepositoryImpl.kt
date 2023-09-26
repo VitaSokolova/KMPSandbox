@@ -11,15 +11,19 @@ class MoviesRepositoryImpl : MoviesRepository {
 
     @Throws(Exception::class)
     override suspend fun getSearchResults(query: String): List<Movie> {
-        val response: MoviesResponseDto = HttpClientHolder.client.request("https://www.omdbapi.com/") {
-            method = HttpMethod.Get
-            url {
-                parameters.append("s", query)
-                parameters.append("apikey", "1ef1c5d3")
-            }
-        }.body()
-        return response.results.map {
-            Movie(it.id, it.title, it.poster, it.year)
+        return if (query.isNotEmpty()) {
+            val response: MoviesResponseDto = HttpClientHolder.client.request("https://www.omdbapi.com/") {
+                method = HttpMethod.Get
+                url {
+                    parameters.append("s", query)
+                    parameters.append("apikey", "1ef1c5d3")
+                }
+            }.body()
+            response.results?.map {
+                Movie(it.id, it.title, it.poster, it.year)
+            } ?: emptyList()
+        } else {
+            emptyList()
         }
     }
 }

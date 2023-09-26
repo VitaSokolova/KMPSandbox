@@ -10,7 +10,7 @@ class MovieDto(
     @SerialName("Title")
     val title: String,
     @SerialName("Poster")
-    val poster: String?,
+    val poster: String? = null,
     @SerialName("Year")
     val year: String
 )

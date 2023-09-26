@@ -3,11 +3,22 @@ import shared
 
 struct ContentView: View {
     @ObservedObject private(set) var viewModel: ViewModel
+    
+    @State private var userInput: String = ""
 
     var body: some View {
-        List(viewModel.phrases, id: \.self) { phrase in
-            Text(phrase)
-        }
+        VStack {
+             TextField("Enter Text", text: $userInput)
+                 .padding()
+                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                 .onChange(of: userInput) { newValue in
+                     viewModel.searchForMovie(queryText: userInput)
+                 }
+             
+            List(viewModel.phrases, id: \.self) { phrase in
+                Text(phrase)
+            }
+         }
     }
 }
 
@@ -20,16 +31,19 @@ struct ContentView_Previews: PreviewProvider {
 extension ContentView {
     class ViewModel: ObservableObject {
         @Published var phrases: [String] = ["Loading..."]
-        init() {
-        Greeting().greet { greeting, error in
-            DispatchQueue.main.async {
-                if let greeting = greeting {
-                    self.phrases = greeting
-                } else {
-                    self.phrases = [error?.localizedDescription ?? "error"]
+        
+        init() {}
+        
+        func searchForMovie(queryText: String){
+            MoviesRepositoryImpl().getSearchResults(query: queryText, completionHandler: { movies, error in
+                DispatchQueue.main.async {
+                    if let movies = movies {
+                        self.phrases = movies.map{$0.title}
+                    } else {
+                        self.phrases = [error?.localizedDescription ?? "error"]
+                    }
                 }
-            }
-        }
+            })
         }
     }
-}
+}   
