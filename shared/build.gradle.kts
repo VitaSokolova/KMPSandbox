@@ -1,7 +1,9 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("kapt")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.8.21"
+    id("com.google.dagger.hilt.android")
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -11,11 +13,11 @@ kotlin {
     android {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "17"
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -27,6 +29,7 @@ kotlin {
     }
 
     val ktorVersion = "2.3.2"
+    val koinVersion = "3.2.0"
 
     sourceSets {
         val commonMain by getting {
@@ -36,16 +39,28 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.insert-koin:koin-core:$koinVersion")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("io.insert-koin:koin-core:$koinVersion")
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation("io.insert-koin:koin-android:$koinVersion")
+
+                implementation("com.google.dagger:hilt-android:2.46.1")
+                configurations.getByName("kapt").dependencies.add(
+                    org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency(
+                        "com.google.dagger",
+                        "hilt-compiler",
+                        "2.46.1"
+                    )
+                )
             }
         }
         val iosMain by getting {
@@ -62,5 +77,9 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 24
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

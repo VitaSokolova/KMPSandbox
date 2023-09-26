@@ -1,2 +1,0 @@
-package vita.sokolova.kotlinmultiplatformsandbox
-

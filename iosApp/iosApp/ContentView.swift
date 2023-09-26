@@ -32,10 +32,12 @@ extension ContentView {
     class ViewModel: ObservableObject {
         @Published var phrases: [String] = ["Loading..."]
         
+        private var repository: MoviesRepository = MoviesRepositoryImpl(httpClient: HttpClientHolder().client)
+        
         init() {}
         
         func searchForMovie(queryText: String){
-            MoviesRepositoryImpl().getSearchResults(query: queryText, completionHandler: { movies, error in
+            repository.getSearchResults(query: queryText, completionHandler: { movies, error in
                 DispatchQueue.main.async {
                     if let movies = movies {
                         self.phrases = movies.map{$0.title}
